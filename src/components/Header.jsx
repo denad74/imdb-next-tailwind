@@ -10,11 +10,6 @@ function Header() {
       <div className="flex">
         <MenuItem title="HOME" address="/" Icon={IoHome} />
         <MenuItem title="ABOUT" address="/about" Icon={IoInformationCircle} />
-        <MenuItem
-          title="Contact"
-          address="/contact"
-          Icon={IoInformationCircle}
-        />
       </div>
       <div className="flex items-center space-x-5">
         <DarkModeSwitch />
