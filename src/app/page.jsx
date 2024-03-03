@@ -3,6 +3,7 @@
 import Results from "@/components/Results";
 
 // for more info "https://github.com/vercel/next.js/issues/43077"
+
 const API_KEY = process.env.API_KEY;
 export const dynamic = "force-dynamic"; // this is the fix
 export default async function Home({ searchParams }) {

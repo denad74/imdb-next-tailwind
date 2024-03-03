@@ -1,19 +1,15 @@
 import Image from "next/image";
 
-const API_KEY = process.env.API_KEY;
-
-const getMovie = async (movieId) => {
+async function getMovie(movieId) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}`
   );
-
-  if (!res.ok) throw new Error("Failed to fetch data");
   return await res.json();
-};
-const MoviePage = async ({ params }) => {
+}
+
+export default async function MoviePage({ params }) {
   const movieId = params.id;
   const movie = await getMovie(movieId);
-
   return (
     <div className="w-full">
       <div className="p-4 md:pt-8 flex flex-col md:flex-row items-center content-center max-w-6xl mx-auto md:space-x-6">
@@ -24,7 +20,10 @@ const MoviePage = async ({ params }) => {
           width={500}
           height={300}
           className="rounded-lg"
-          style={{ maxWidth: "100%", height: "100%" }}
+          style={{
+            maxWidth: "100%",
+            height: "100%",
+          }}
           placeholder="blur"
           blurDataURL="/spinner.svg"
           alt="Movie poster"
@@ -38,7 +37,7 @@ const MoviePage = async ({ params }) => {
             {movie.overview}
           </p>
           <p className="mb-3">
-            <span className="font-semibold mr-1">Date released:</span>
+            <span className="font-semibold mr-1">Date Released:</span>
             {movie.release_date || movie.first_air_date}
           </p>
           <p className="mb-3">
@@ -49,6 +48,4 @@ const MoviePage = async ({ params }) => {
       </div>
     </div>
   );
-};
-
-export default MoviePage;
+}
